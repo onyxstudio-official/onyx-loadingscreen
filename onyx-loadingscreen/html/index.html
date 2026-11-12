@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>onyx-loadingscreen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Michroma&family=Poppins:wght@300;400;500;600;700&family=Unbounded:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div id="bg">
+        <img id="bg-img-a" class="bg-img" alt="" draggable="false" onerror="this.src='assets/images/1.png'" />
+        <img id="bg-img-b" class="bg-img" alt="" draggable="false" onerror="this.src='assets/images/1.png'" />
+        <video id="bg-video" muted playsinline loop preload="auto" disablepictureinpicture disableremoteplayback></video>
+        <div id="bg-black"></div>
+        <div id="bg-vignette"></div>
+    </div>
+
+    <section id="profile">
+        <div class="profile-card">
+            <div class="avatar">
+                <img id="avatar-img" src="assets/images/default-avatar.png" alt="" draggable="false" onerror="this.src='assets/images/default-avatar.png'" />
+                <span class="status-dot"></span>
+            </div>
+            <div class="profile-meta">
+                <div id="display-name" class="display-name">Oyuncu</div>
+                <div id="user-handle" class="user-handle">@oyuncu</div>
+            </div>
+        </div>
+
+        <div class="profile-stats">
+            <div class="stat stat-ping">
+                <svg class="stat-ico" viewBox="0 0 24 24" fill="none">
+                    <path d="M2 9.2a14.5 14.5 0 0 1 20 0" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+                    <path d="M5.4 12.7a9.6 9.6 0 0 1 13.2 0" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+                    <path d="M8.8 16.1a4.7 4.7 0 0 1 6.4 0" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+                    <circle cx="12" cy="19.6" r="1.6" fill="currentColor"/>
+                </svg>
+                <span id="ping-value" class="ping-value">28</span><span class="ping-unit">ms</span>
+            </div>
+
+            <div class="stat stat-players">
+                <svg class="stat-ico" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="8.2" r="2.7" stroke="currentColor" stroke-width="1.6"/>
+                    <circle cx="5.6" cy="13.4" r="2.2" stroke="currentColor" stroke-width="1.6"/>
+                    <circle cx="18.4" cy="13.4" r="2.2" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M7.6 21c0-2.7 2-4.6 4.4-4.6s4.4 1.9 4.4 4.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    <path d="M2 21c0-1.8 1.3-3.2 3-3.5M22 21c0-1.8-1.3-3.2-3-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+                <span id="players-online" class="players-online">1</span><span id="players-max" class="players-max">/48</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="music" class="music closed">
+        <button id="music-toggle" class="music-toggle" type="button" aria-label="Müzik Çalar">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M14.5 6 8.5 12l6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div id="player" class="player">
+            <div id="player-bloom" class="player-bloom"></div>
+            <div class="player-glass"></div>
+
+            <div class="player-top">
+                <div class="cover">
+                    <img id="cover-img" alt="" draggable="false" onerror="this.removeAttribute('src')" />
+                </div>
+                <div class="song-info">
+                    <div id="song-title" class="song-title">-</div>
+                    <div id="song-artist" class="song-artist">-</div>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <div class="times">
+                    <span id="time-cur">0:00</span>
+                    <span id="time-total">0:00</span>
+                </div>
+                <div id="seek" class="seek">
+                    <div id="seek-fill" class="seek-fill"><span class="seek-thumb"></span></div>
+                </div>
+            </div>
+
+            <div class="player-bottom">
+                <div class="volume">
+                    <button id="mute-btn" class="icon-btn" type="button" aria-label="Ses">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M4 9.2h3.2L12 5v14l-4.8-4.2H4z" fill="currentColor"/>
+                            <path id="vol-w1" d="M15.3 9.2a4 4 0 0 1 0 5.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path id="vol-w2" d="M18 6.6a7.6 7.6 0 0 1 0 10.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path id="vol-x" d="M16 9.5l5 5M21 9.5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div id="vol" class="vol">
+                        <div id="vol-fill" class="vol-fill"><span class="vol-thumb"></span></div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="prev-btn" class="ctrl-btn" type="button" aria-label="Önceki">
+                        <svg viewBox="0 0 32 24"><path d="M15 4.6v14.8L4.2 12z M27.8 4.6v14.8L17 12z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                    </button>
+                    <button id="play-btn" class="ctrl-btn ctrl-play" type="button" aria-label="Oynat / Duraklat">
+                        <svg id="ico-pause" viewBox="0 0 24 24"><rect x="5.4" y="3.8" width="4.6" height="16.4" rx="1.3" fill="currentColor"/><rect x="14" y="3.8" width="4.6" height="16.4" rx="1.3" fill="currentColor"/></svg>
+                        <svg id="ico-play" class="hide" viewBox="0 0 24 24"><path d="M7 4.6v14.8L19.4 12z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                    </button>
+                    <button id="next-btn" class="ctrl-btn" type="button" aria-label="Sonraki">
+                        <svg viewBox="0 0 32 24"><path d="M4.2 4.6v14.8L15 12z M17 4.6v14.8L27.8 12z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="loading">
+        <div class="loading-main-row">
+            <div class="ring">
+                <svg viewBox="0 0 44 44">
+                    <circle class="ring-track" cx="22" cy="22" r="18"/>
+                    <circle id="ring-progress" class="ring-progress" cx="22" cy="22" r="18"/>
+                </svg>
+                <span id="percent" class="percent">0</span>
+            </div>
+            <div class="loading-title">Loading<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></div>
+        </div>
+        <div id="loading-subtext" class="loading-subtext">Sunucu bağlantısı hazırlanıyor...</div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
